@@ -27,4 +27,8 @@ public class DoctorService {
         Doctor doctor = doctorOptional.get();
         return doctor;
     }
+
+    public void deleteDoctor(int id) {
+        doctorRepository.deleteById(id);
+    }
 }

@@ -24,4 +24,11 @@ public class DoctorController {
         return doctorService.getDoctor(doctorId);
     }
 
+    //API to delete a doctor
+    @DeleteMapping("/delete")
+    public String deleteDoctor(@RequestParam("id") int id){
+        doctorService.deleteDoctor(id);
+        return "Doctor deleted successfully!";
+    }
+
 }
