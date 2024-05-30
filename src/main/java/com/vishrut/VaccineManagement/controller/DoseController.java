@@ -15,12 +15,14 @@ public class DoseController {
     @Autowired
     DoseService doseService;
 
-    //we need patient id who have taken
-    //and Dose
+    //we need patient id and brand name of vaccine
     @PostMapping("/vaccinate")
     public String addDose(@RequestParam("id") int patientId, @RequestParam("brand") VaccineBrand vaccineBrand){
         doseService.addDose(patientId,vaccineBrand);
         return "Dose added Successfully";
     }
+
+    //make get dose taken or not API for given patient ID
+
 
 }

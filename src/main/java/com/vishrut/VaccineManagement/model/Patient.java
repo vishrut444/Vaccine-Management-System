@@ -22,6 +22,7 @@ public class Patient {
 
     private String name;
 
+
     private boolean vaccinated;//dose taken or not
 
     private int age;

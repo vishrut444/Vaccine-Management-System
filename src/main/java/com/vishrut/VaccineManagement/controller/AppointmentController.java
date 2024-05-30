@@ -17,15 +17,20 @@ public class AppointmentController {
     @Autowired
     AppointmentService appointmentService;
 
-    @PostMapping("Book-appointment")
+    @PostMapping("book-appointment")
     public ResponseEntity addAppointment(@RequestParam("pid") int patintId, @RequestParam("did") int doctorId){
         try {
-            Appointment bookAppointment = appointmentService.addAppointment(patintId, doctorId);
-            return new ResponseEntity("Appointment Booked Successfully",HttpStatus.CREATED);
+            Appointment bookedAppointment = appointmentService.addAppointment(patintId, doctorId);
+            //ResponseEntity can return different here we return bookedAppointment object
+            return new ResponseEntity(bookedAppointment,HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity("Appointment Not Booked!", HttpStatus.BAD_REQUEST);
+            //RE returns String
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
+
+    //Getting Appointment details API
+
 
 
 

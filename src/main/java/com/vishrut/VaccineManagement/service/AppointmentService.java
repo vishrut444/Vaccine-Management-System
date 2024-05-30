@@ -20,33 +20,39 @@ public class AppointmentService {
 
     @Autowired
     AppointmentRepository appointmentRepository;
+    //connecting to doctor repo to get doctor details
     @Autowired
     DoctorRepository doctorRepository;
+    //connecting to patient repo to get patient details
     @Autowired
     PatientRepository patientRepository;
 
     public Appointment addAppointment(int patintId, int doctorId) {
-        //1.
+        //1. check if patient is valid or not
         Optional<Patient> patientOptional = patientRepository.findById(patintId);
         if(patientOptional.isEmpty()){
             throw new patientNotFoundException("There is no patient with this id!");
         }
+        //2. checking if doctor is valid or not
         Optional<Doctor> doctorOptional = doctorRepository.findById(doctorId);
         if(doctorOptional.isEmpty()){
             throw new DoctorNotFoundException("There is no doctor with this id!");
         }
 
+        //3. getting the details of patient with pid and doctor with did from the patient and doctor table
         Patient patient = patientOptional.get();
         Doctor doctor = doctorOptional.get();
 
-        //book appointment
+        //4. book appointment
+        //first make appointment object
         Appointment appointment = new Appointment();
         //set appointment id
-        appointment.setAppointmentId(String.valueOf(UUID.randomUUID()));
-        appointment.setStatus(AppointmentStatus.BOOKED);
-        appointment.setDoctor(doctor);
-        appointment.setPatient(patient);
+        appointment.setAppointmentId(String.valueOf(UUID.randomUUID()));// setting the UUID
+        appointment.setStatus(AppointmentStatus.BOOKED);// setting appointment status to BOOKED
+        appointment.setDoctor(doctor);//setting the FK
+        appointment.setPatient(patient);//setting the FK
 
+        //5. saving the appintment in appoint table and returning the details of appointment
         return appointmentRepository.save(appointment);
     }
 }

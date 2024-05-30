@@ -29,6 +29,13 @@ public class DoctorService {
     }
 
     public void deleteDoctor(int id) {
+        //1. check if doctor is present or not
+        Optional<Doctor> doctorOptional = doctorRepository.findById(id);
+        if(!doctorOptional.isPresent()){
+            throw new DoctorNotFoundException("Doctor with given Id Doesn't Exist");
+        }
+        //if above if statement does not execute which means doctor is there
+        //2. we delete the doctor from doctor table
         doctorRepository.deleteById(id);
     }
 }

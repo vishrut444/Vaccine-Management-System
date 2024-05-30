@@ -33,9 +33,9 @@ public class Dose {
     @CreationTimestamp //when we save Dose it will automatically add time stamp to you DB
     private Date dateOfVaccination;
 
-    //we have to relate patient ot dose tats why we created attribute Patient in Dose class
+    //we have to relate patient to dose that's why we created attribute Patient in Dose class
     @OneToOne //1st = current class(Dose class) 2nd = Connecting Class(Patient class)
-    @JoinColumn //it creates FK column -> patient_id
+    @JoinColumn //it creates FK column -> patient_id(snake_casing) in Dose DB
     Patient patient;
 
 

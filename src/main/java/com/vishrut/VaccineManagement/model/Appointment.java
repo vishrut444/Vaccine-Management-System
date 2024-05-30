@@ -21,13 +21,13 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; //this is for PK for the DB
 
-    private String appointmentId; //this is to generate unique UUID
+    private String appointmentId; //this is to generate unique UUID we have to set in appointment service layer
 
     @CreationTimestamp
     private Date dateOfAppointment;//this is sql date
 
     @Enumerated(value = EnumType.STRING)
-    private AppointmentStatus status;
+    private AppointmentStatus status;//this is also we have to set in service layer
 
     //this is to connect Doctor to Appointment
     //relation b/w Appointment ---- Doctor
