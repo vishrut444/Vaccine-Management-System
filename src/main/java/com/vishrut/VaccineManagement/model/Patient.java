@@ -27,8 +27,8 @@ public class Patient {
 
     private int age;
 
-    @Enumerated(value = EnumType.STRING)//by default sql store enum as tiny ind indexing from 0 but this annotation
-    //makes it possible to store it as string
+    //by default sql store enum as tiny ind indexing from 0 but this annotation to makes it possible to store it as string
+    @Enumerated(value = EnumType.STRING)
     private Gender gender; //it is enum
 
     @Column(unique = true,nullable = false)//it will make sure that email are unique
